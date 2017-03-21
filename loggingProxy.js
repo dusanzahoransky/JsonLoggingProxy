@@ -2,8 +2,8 @@ var http = require('http');
 var httpProxy = require('http-proxy');
 var util = require('util');
 
-var httpServerPort = 8080;
-var proxyPort = 8081;
+var httpServerPort = 9091;
+var proxyPort = 9090;
 //
 // Create your proxy server and set the target in the options.
 //
@@ -35,8 +35,8 @@ var server = http.createServer(function (req, res) {
   console.log("HEADERS: "  + '\n' + JSON.stringify(req.headers, true, 1) );
 
   res.writeHead(200, { 'Content-Type': 'text/json' });
-  res.write('request successfully proxied!' + '\n' + JSON.stringify(req.headers, true, 1));  
+  res.write('{ "response" : "request successfully proxied!" }');  
   res.end();
-})
+}).listen(httpServerPort);
 
 console.log("http server listening on port " + httpServerPort);
